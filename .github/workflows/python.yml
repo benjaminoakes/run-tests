@@ -36,3 +36,6 @@ jobs:
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
         # only used for Ruby
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
+        BUILD_COMMAND: |
+          /bin/herokuish buildpack build
+          /bin/true
