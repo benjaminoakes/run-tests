@@ -1,4 +1,4 @@
-name: Python
+name: Custom Build Command
 on: [push, pull_request]
 jobs:
   test:
@@ -6,7 +6,11 @@ jobs:
     strategy:
       matrix:
         repository:
-        - heroku/python-getting-started
+        - heroku/node-js-getting-started
+        - heroku/ruby-getting-started
+        - heroku/java-getting-started
+        - heroku/go-getting-started
+        - heroku/scala-getting-started
     services:
       postgres:
         image: postgres:11
@@ -30,7 +34,7 @@ jobs:
         repository: ${{ matrix.repository }}
         path: app
 
-    - uses: vincetse/herokuish-action@python
+    - uses: vincetse/herokuish-action@dev
       env:
         APP_SUBDIR: app
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
@@ -38,4 +42,4 @@ jobs:
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
         BUILD_COMMAND: |
           /bin/herokuish buildpack build
-          /bin/true
+          /bin/herokuish buildpack test
