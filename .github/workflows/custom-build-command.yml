@@ -42,4 +42,5 @@ jobs:
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
         BUILD_COMMAND: |
           /bin/herokuish buildpack build
+        TEST_COMMAND: |
           /bin/herokuish buildpack test

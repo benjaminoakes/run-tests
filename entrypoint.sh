@@ -12,5 +12,11 @@ export IMPORT_PATH=/github/workspace/${APP_SUBDIR}
 if [[ -n "${BUILD_COMMAND}" ]]; then
   ${BUILD_COMMAND}
 else
+  /bin/herokuish buildpack build
+fi
+
+if [[ -n "${TEST_COMMAND}" ]]; then
+  ${TEST_COMMAND}
+else
   /bin/herokuish buildpack test
 fi
