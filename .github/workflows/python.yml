@@ -36,4 +36,4 @@ jobs:
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
         # only used for Ruby
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
-        BUILDPACK_URL: https://gitlab.iri.upc.edu/erio/heroku-buildpack-python.git
+        BUILDPACK_URL: https://github.com/speixoto/heroku-buildpack-python-pytest.git
