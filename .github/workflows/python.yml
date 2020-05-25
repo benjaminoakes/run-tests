@@ -33,5 +33,5 @@ jobs:
     - uses: vincetse/herokuish-action@python
       env:
         APP_SUBDIR: app
-        DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
+        DATABASE_URL: postgres://postgres:postgres@postgres:5432/test?sslmode=disable
         BUILDPACK_URL: https://github.com/vincetse/heroku-buildpack-python.git#add-test-command
