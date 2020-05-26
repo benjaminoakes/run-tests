@@ -6,6 +6,7 @@ jobs:
   common:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         repository:
         - heroku/node-js-getting-started
@@ -48,6 +49,7 @@ jobs:
   python:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         repository:
         - vincetse/python-getting-started
