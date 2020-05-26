@@ -44,8 +44,8 @@ jobs:
         # only used for Ruby
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
 
-  # Python-specific customizations for Herokuish to successfully test
-  # the application.
+  # A custom buildpack is required for Python builds since the buildpack
+  # included by Herokuish does not support tests.
   python:
     runs-on: ubuntu-latest
     strategy:
