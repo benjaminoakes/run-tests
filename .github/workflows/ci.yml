@@ -1,8 +1,8 @@
 name: CI
 on: [push, pull_request]
 jobs:
-  name: Common out-of-box languanges
   common:
+    name: Common out-of-box languanges
     runs-on: ubuntu-latest
     strategy:
       matrix:
