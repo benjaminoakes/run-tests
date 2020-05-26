@@ -1,6 +1,7 @@
 name: CI
 on: [push, pull_request]
 jobs:
+  name: Common out-of-box languanges
   common:
     runs-on: ubuntu-latest
     strategy:
@@ -40,3 +41,39 @@ jobs:
         DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
         # only used for Ruby
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
+
+  python:
+    name: Python-specific build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repository:
+        - vincetse/python-getting-started
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: test
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - "5432:5432"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+    - uses: actions/checkout@v2
+
+    # clone a public repo and use for test
+    - uses: actions/checkout@v2
+      with:
+        repository: ${{ matrix.repository }}
+        path: app
+
+    - uses: vincetse/herokuish-action@python
+      env:
+        APP_SUBDIR: app
+        DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
+        BUILDPACK_URL: https://github.com/vincetse/heroku-buildpack-python.git#add-test-command
