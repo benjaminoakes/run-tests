@@ -1,8 +1,9 @@
 name: CI
 on: [push, pull_request]
 jobs:
+  # Languages that can be run with Herokuish without any specific
+  # considerations.
   common:
-    name: Common out-of-box languanges
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -42,8 +43,9 @@ jobs:
         # only used for Ruby
         DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL: true
 
+  # Python-specific customizations for Herokuish to successfully test
+  # the application.
   python:
-    name: Python-specific build
     runs-on: ubuntu-latest
     strategy:
       matrix:
