@@ -1,7 +1,7 @@
-name: Python
+name: CI
 on: [push, pull_request]
 jobs:
-  test:
+  python:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -33,5 +33,5 @@ jobs:
     - uses: vincetse/herokuish-action@python
       env:
         APP_SUBDIR: app
-        DATABASE_URL: postgres://postgres:postgres@postgres:5432/test?sslmode=disable
+        DATABASE_URL: postgres://postgres:postgres@postgres:5432/test
         BUILDPACK_URL: https://github.com/vincetse/heroku-buildpack-python.git#add-test-command
